@@ -1,6 +1,6 @@
 export const getMessagesES = () =>{
     return { 
-        allDay: 'Todo el día',
+    allDay: 'Todo el día',
     previous: '<',
     next: '>',
     today: 'Hoy',
