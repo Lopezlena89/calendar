@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { onAddNewEvent, onSetActiveEvent } from '../store';
+import { onAddNewEvent, onDeleteEvent, onSetActiveEvent, onUpdateEvent } from '../store';
 
 export const useCalendarStore = () => {
 
@@ -16,10 +16,16 @@ export const useCalendarStore = () => {
 
 
         if(calendarEvent._id){
-            
+            dispatch(onUpdateEvent({...calendarEvent}))
         }else{
             dispatch(onAddNewEvent({ ...calendarEvent,_id: new Date().getTime() }))
         }
+    }
+
+    const startDeletingEvent = () =>{
+
+        
+        dispatch(onDeleteEvent());
     }
     
     return {
@@ -27,9 +33,11 @@ export const useCalendarStore = () => {
         //Properties
         events,
         activeEvent,
+        hasEventSelected:!!activeEvent,
         //Metodos
         setActiveEvent,
-        starSavingEvent
+        starSavingEvent,
+        startDeletingEvent
 
     }
 }
