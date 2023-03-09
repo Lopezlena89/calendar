@@ -6,7 +6,7 @@ import Modal from "react-modal";
 import DatePicker,{registerLocale} from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
-import { useIuStore } from "../../hooks/useUiStore";
+import { useUiStore } from "../../hooks/useUiStore";
 import { useCalendarStore } from "../../hooks";
 
 registerLocale('es',es)
@@ -29,9 +29,9 @@ export const CalendarModal = () => {
 
    
 
-    const {isDateModalOpen,closeDateModal} = useIuStore();
+    const {isDateModalOpen,closeDateModal} = useUiStore();
 
-    const  {activeEvent,starSavingEvent} = useCalendarStore()
+    const  {activeEvent,startSavingEvent} = useCalendarStore()
     
     const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -92,12 +92,13 @@ export const CalendarModal = () => {
 
         console.log(formValues);
 
-        await starSavingEvent(formValues);
+        await startSavingEvent( formValues );
         closeDateModal();
         setFormSubmitted(false);
 
 
     }
+    
 
   return (
     <Modal
